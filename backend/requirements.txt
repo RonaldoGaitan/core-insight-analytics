@@ -6,6 +6,7 @@ supabase
 langchain
 langchain-anthropic
 langchain-community
+langchain-openai
 anthropic
 python-dotenv
 httpx
