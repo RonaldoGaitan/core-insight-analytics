@@ -1,4 +1,17 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+
 export default function LoginPage() {
+  const router = useRouter()
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Simple authentication - set flag in localStorage
+    localStorage.setItem('isAuthenticated', 'true')
+    router.push('/dashboard')
+  }
+
   return (
     <div className="auth-wrap">
       <div className="auth-card">
@@ -6,7 +19,7 @@ export default function LoginPage() {
         <h1>Welcome back</h1>
         <p className="sub">Enter your credentials to access your account</p>
         
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="field">
             <label>Email</label>
             <input type="email" placeholder="you@example.com" />

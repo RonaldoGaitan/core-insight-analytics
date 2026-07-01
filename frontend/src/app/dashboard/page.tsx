@@ -1,6 +1,24 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
 export default function DashboardPage() {
+  const router = useRouter()
+
+  useEffect(() => {
+    // Simple authentication check - redirect to login if not authenticated
+    const isAuthenticated = localStorage.getItem('isAuthenticated')
+    if (!isAuthenticated) {
+      router.push('/login')
+    }
+  }, [router])
+
+  // Don't render if not authenticated
+  if (typeof window !== 'undefined' && !localStorage.getItem('isAuthenticated')) {
+    return null
+  }
+
   return (
     <div className="app-shell">
       <aside className="sidebar">

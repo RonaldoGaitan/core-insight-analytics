@@ -1,4 +1,17 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+
 export default function SignupPage() {
+  const router = useRouter()
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Simple authentication - set flag in localStorage
+    localStorage.setItem('isAuthenticated', 'true')
+    router.push('/dashboard')
+  }
+
   return (
     <div className="auth-wrap">
       <div className="auth-card">
@@ -6,7 +19,7 @@ export default function SignupPage() {
         <h1>Create account</h1>
         <p className="sub">Start your free trial today</p>
         
-        <form>
+        <form onSubmit={handleSignup}>
           <div className="field">
             <label>Full Name</label>
             <input type="text" placeholder="John Doe" />
