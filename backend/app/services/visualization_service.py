@@ -13,32 +13,8 @@ class VisualizationService:
         )
         
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", """You are a data visualization expert. Generate Plotly.js configuration based on the data and question.
-
-Return a JSON object with this structure:
-{
-  "data": [
-    {
-      "type": "bar" or "line" or "pie" or "scatter",
-      "x": [column values],
-      "y": [column values],
-      "name": "series name"
-    }
-  ],
-  "layout": {
-    "title": "chart title",
-    "xaxis": {"title": "x label"},
-    "yaxis": {"title": "y label"}
-  }
-}
-
-Choose the best chart type based on the data and question."""),
-            ("human", """Data:
-{data}
-
-Question: {question}
-
-Generate visualization JSON:""")
+            ("system", "You are a data visualization expert. Generate Plotly.js configuration based on the data and question.\n\nReturn a JSON object with this structure:\n{\n  \"data\": [\n    {\n      \"type\": \"bar\" or \"line\" or \"pie\" or \"scatter\",\n      \"x\": [column values],\n      \"y\": [column values],\n      \"name\": \"series name\"\n    }\n  ],\n  \"layout\": {\n    \"title\": \"chart title\",\n    \"xaxis\": {\"title\": \"x label\"},\n    \"yaxis\": {\"title\": \"y label\"}\n  }\n}\n\nChoose the best chart type based on the data and question."),
+            ("human", "Data:\n{data}\n\nQuestion: {question}\n\nGenerate visualization JSON:")
         ])
 
     async def generate_visualization(self, data: list, question: str) -> dict:
