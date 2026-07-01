@@ -1,15 +1,26 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simple authentication - set flag in localStorage
-    localStorage.setItem('isAuthenticated', 'true')
-    router.push('/dashboard')
+    setError('')
+
+    // Restrict to only ronaldo.gaitan@icloud.com with specific password
+    if (email === 'ronaldo.gaitan@icloud.com' && password === 'Cradle_6798') {
+      localStorage.setItem('isAuthenticated', 'true')
+      localStorage.setItem('userEmail', email)
+      router.push('/dashboard')
+    } else {
+      setError('Invalid credentials')
+    }
   }
 
   return (
@@ -22,18 +33,25 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <div className="field">
             <label>Email</label>
-            <input type="email" placeholder="you@example.com" />
+            <input 
+              type="email" 
+              placeholder="you@example.com" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="field">
             <label>Password</label>
-            <input type="password" placeholder="••••••••" />
+            <input 
+              type="password" 
+              placeholder="••••••••" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
+          {error && <div style={{color: '#d6483f', fontSize: '14px', marginBottom: '16px'}}>{error}</div>}
           <button type="submit" className="btn btn-accent">Sign In</button>
         </form>
-        
-        <div className="switch-line">
-          Don't have an account? <a href="/signup">Sign up</a>
-        </div>
       </div>
     </div>
   )

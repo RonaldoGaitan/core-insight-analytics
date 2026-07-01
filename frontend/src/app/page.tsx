@@ -1,6 +1,40 @@
 'use client'
 
+import { useEffect } from 'react'
+
 export default function Home() {
+  useEffect(() => {
+    // Initialize hero chart if Chart.js is available
+    if (typeof window !== 'undefined' && (window as any).Chart) {
+      const ctx = document.getElementById('heroChart') as HTMLCanvasElement
+      if (ctx) {
+        new (window as any).Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+              data: [28, 34, 30, 42, 38, 52, 61],
+              borderColor: '#16181d',
+              backgroundColor: 'rgba(22, 24, 29, 0.06)',
+              fill: true,
+              tension: 0.4,
+              pointRadius: 0,
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { grid: { display: false } },
+              y: { grid: { color: '#f1f1ef' }, display: true }
+            }
+          }
+        })
+      }
+    }
+  }, [])
+
   return (
     <section className="view active">
       <nav className="topnav">
@@ -13,7 +47,7 @@ export default function Home() {
           <a href="/pricing">Pricing</a>
           <a href="/about">About</a>
         </div>
-        <button className="btn btn-dark" onClick={() => window.location.href = '/signup'}>Book a Demo</button>
+        <button className="btn btn-dark" onClick={() => window.location.href = '/login'}>Login</button>
       </nav>
 
       <div className="hero">
@@ -21,7 +55,7 @@ export default function Home() {
         <h1>Know exactly why<br/>your numbers moved.</h1>
         <p>CoreInsight connects to the tools you already use and turns raw sales data into plain-English answers, in seconds.</p>
         <div className="hero-ctas">
-          <button className="btn btn-dark" onClick={() => window.location.href = '/signup'}>Get Started</button>
+          <button className="btn btn-dark" onClick={() => window.location.href = '/login'}>Get Started</button>
           <button className="btn btn-ghost" onClick={() => window.location.href = '/dashboard'}>View Live Dashboard</button>
         </div>
       </div>
