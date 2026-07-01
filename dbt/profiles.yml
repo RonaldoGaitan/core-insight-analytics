@@ -1,0 +1,12 @@
+core_insight:
+  outputs:
+    dev:
+      type: postgres
+      host: db.psozdkkyjztfveghayfq.supabase.co
+      user: postgres
+      password: Volkswagen_1997123
+      port: 5432
+      dbname: postgres
+      schema: public
+      threads: 4
+  target: dev
