@@ -37,9 +37,10 @@ export default function Home() {
             Core Insight
           </div>
           <div className="flex gap-6">
-            <button className="text-gray-300 hover:text-white transition font-medium">Features</button>
-            <button className="text-gray-300 hover:text-white transition font-medium">Pricing</button>
-            <button className="text-gray-300 hover:text-white transition font-medium">Docs</button>
+            <a href="/features" className="text-gray-300 hover:text-white transition font-medium">Features</a>
+            <a href="/pricing" className="text-gray-300 hover:text-white transition font-medium">Pricing</a>
+            <a href="/integrations" className="text-gray-300 hover:text-white transition font-medium">Integrations</a>
+            <a href="/about" className="text-gray-300 hover:text-white transition font-medium">About</a>
             <a href="/login" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:opacity-90 transition font-medium">
               Get Started
             </a>
