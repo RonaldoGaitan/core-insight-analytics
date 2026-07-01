@@ -1,3 +1,5 @@
+'use client'
+
 export default function IntegrationsPage() {
   return (
     <div className="wizard-wrap">
