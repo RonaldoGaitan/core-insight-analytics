@@ -1,11 +1,11 @@
-from langchain_openai import OpenAIEmbeddings
+from langchain_anthropic import AnthropicEmbeddings
 from langchain_community.vectorstores import PGVector
 from app.core.config import settings
 
 
 class RetrievalService:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
+        self.embeddings = AnthropicEmbeddings(anthropic_api_key=settings.ANTHROPIC_API_KEY)
         self.vectorstore = PGVector(
             connection_string=settings.DATABASE_URL,
             embedding_function=self.embeddings,
