@@ -55,10 +55,17 @@ ALLOWED_ORIGINS = https://coreinsight.solutions,https://www.coreinsight.solution
 ```
 
 ### Step 6: Get Your Railway Domain
-1. Go to "Settings" tab (left sidebar)
-2. Click "Networking"
-3. Copy your domain (looks like: `coreinsight-backend.railway.app`)
-4. **SAVE THIS** - you'll need it for Cloudflare
+1. Look at the top of your service page
+2. You should see a URL like: `https://coreinsight-backend.railway.app`
+3. OR: Click "Settings" tab → look for "Domains" or "Networking"
+4. OR: Click the "Generate Domain" button if you see one
+5. Copy the domain (looks like: `coreinsight-backend.railway.app`)
+6. **SAVE THIS** - you'll need it for Cloudflare
+
+**If you don't see Networking:**
+- The domain is usually shown at the top of the service page
+- Look for a URL starting with `https://`
+- Copy everything after `https://`
 
 ### Step 7: Test Backend
 1. Click your service name at top
