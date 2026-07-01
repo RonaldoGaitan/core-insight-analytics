@@ -1,39 +1,25 @@
-'use client'
-
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-black">
-      <div className="bg-white rounded-3xl p-12 max-w-md w-full">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
-        <p className="text-gray-600 mb-8">Sign in to access your account</p>
+    <div className="auth-wrap">
+      <div className="auth-card">
+        <div className="brand"><span className="mark"></span>CoreInsight Analytics</div>
+        <h1>Welcome back</h1>
+        <p className="sub">Enter your credentials to access your account</p>
         
-        <form className="space-y-6">
-          <div>
-            <label className="block font-medium text-gray-700 mb-2">Email</label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
+        <form>
+          <div className="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" />
           </div>
-          <div>
-            <label className="block font-medium text-gray-700 mb-2">Password</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-            />
+          <div className="field">
+            <label>Password</label>
+            <input type="password" placeholder="••••••••" />
           </div>
-          <button
-            type="submit"
-            className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:opacity-90 transition"
-          >
-            Sign In
-          </button>
+          <button type="submit" className="btn btn-accent">Sign In</button>
         </form>
         
-        <div className="text-center mt-6 text-gray-600">
-          Don't have an account? <a href="/signup" className="text-purple-600 hover:underline">Sign up</a>
+        <div className="switch-line">
+          Don't have an account? <a href="/signup">Sign up</a>
         </div>
       </div>
     </div>

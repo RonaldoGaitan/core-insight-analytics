@@ -1,84 +1,70 @@
-'use client'
-
 export default function FeaturesPage() {
   return (
-    <main className="min-h-screen bg-black">
-      <nav className="flex items-center justify-between px-8 py-6">
-        <div className="text-2xl font-bold text-white">Core Insight</div>
-        <div className="flex gap-6">
-          <a href="/features" className="text-gray-300 hover:text-white transition font-medium">Features</a>
-          <a href="/pricing" className="text-gray-300 hover:text-white transition font-medium">Pricing</a>
-          <a href="/about" className="text-gray-300 hover:text-white transition font-medium">About</a>
-          <a href="/login" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:opacity-90 transition font-medium">
-            Get Started
-          </a>
+    <section className="view active">
+      <nav className="topnav">
+        <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+          <button className="back-btn">←</button>
+          <div className="brand"><span className="mark"></span>CoreInsight Analytics</div>
         </div>
+        <div className="navlinks">
+          <a href="/">Home</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/about">About</a>
+        </div>
+        <button className="btn btn-dark" onClick={() => window.location.href = '/signup'}>Get Started</button>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-8 py-32">
-        <div className="text-center mb-20">
-          <h1 className="text-6xl font-bold text-white mb-6">Powerful Features</h1>
-          <p className="text-2xl text-gray-300">Everything you need to deliver world-class analytics</p>
+      <div className="features-page">
+        <div className="features-hero">
+          <h1>Everything you need to understand your business</h1>
+          <p>Powerful features designed to help you make data-driven decisions faster.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">🔍</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">AI That Sees Your Schema</h3>
-            <p className="text-gray-300 text-lg">
-              Not guesses at it. Our AI understands your data structure and generates accurate queries. No manual mapping required.
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">👥</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">Self-Service Adoption</h3>
-            <p className="text-gray-300 text-lg">
-              Self-service that actually gets adopted by your users without extensive training. Natural language queries anyone can use.
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">🎨</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">100% Embedded & Customizable</h3>
-            <p className="text-gray-300 text-lg">
-              Fully embed analytics into your product with complete customization options. Match your brand, match your UX.
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">🔐</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">Multi-Tenant Security</h3>
-            <p className="text-gray-300 text-lg">
-              Security at every level, not the prayer level. Complete data isolation guaranteed with row-level security.
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">📈</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">Visualizations Without Requests</h3>
-            <p className="text-gray-300 text-lg">
-              Generate beautiful visualizations instantly without feature requests. AI picks the right chart type automatically.
-            </p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-10 border border-white/10">
-            <div className="text-purple-400 text-5xl mb-6">⚙️</div>
-            <h3 className="text-3xl font-semibold text-white mb-4">Automate Insights to Action</h3>
-            <p className="text-gray-300 text-lg">
-              Automate every insight into action with workflow automation. Alerts, reports, and integrations out of the box.
-            </p>
+        <div className="feature-block">
+          <h3>AI-Powered Analytics</h3>
+          <p>Our advanced AI analyzes your data and provides actionable insights in plain English, no technical expertise required.</p>
+          <div className="feature-grid-2">
+            <div className="feature-item">
+              <h4>Natural Language Queries</h4>
+              <p>Ask questions like "Why did revenue drop?" and get instant answers.</p>
+            </div>
+            <div className="feature-item">
+              <h4>Automated Insights</h4>
+              <p>Get notified about important trends and anomalies automatically.</p>
+            </div>
           </div>
         </div>
 
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to get started?</h2>
-          <p className="text-xl text-gray-300 mb-8">See Core Insight in action with a free trial</p>
-          <a href="/login" className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:opacity-90 transition inline-block">
-            Start Free Trial
-          </a>
+        <div className="feature-block">
+          <h3>Data Integration</h3>
+          <p>Connect all your business tools in minutes and keep your data automatically synced.</p>
+          <div className="feature-grid-2">
+            <div className="feature-item">
+              <h4>50+ Integrations</h4>
+              <p>Shopify, Square, Stripe, QuickBooks, and many more.</p>
+            </div>
+            <div className="feature-item">
+              <h4>Real-time Sync</h4>
+              <p>Your data is always up-to-date with automatic synchronization.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="feature-block">
+          <h3>Security & Privacy</h3>
+          <p>Enterprise-grade security to protect your sensitive business data.</p>
+          <div className="feature-grid-2">
+            <div className="feature-item">
+              <h4>Bank-Level Encryption</h4>
+              <p>Your data is encrypted at rest and in transit.</p>
+            </div>
+            <div className="feature-item">
+              <h4>Role-Based Access</h4>
+              <p>Control who sees what with granular permissions.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }
