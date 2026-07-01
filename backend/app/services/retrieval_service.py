@@ -1,30 +1,20 @@
-from langchain_anthropic import AnthropicEmbeddings
-from langchain_community.vectorstores import PGVector
+# Temporarily disabled - embeddings integration to be fixed later
+# from langchain_anthropic import AnthropicEmbeddings
+# from langchain_community.vectorstores import PGVector
 from app.core.config import settings
 
 
 class RetrievalService:
     def __init__(self):
-        self.embeddings = AnthropicEmbeddings(anthropic_api_key=settings.ANTHROPIC_API_KEY)
-        self.vectorstore = PGVector(
-            connection_string=settings.DATABASE_URL,
-            embedding_function=self.embeddings,
-            collection_name="schema_metadata"
-        )
+        # Temporarily disabled - embeddings integration to be fixed later
+        # self.embeddings = AnthropicEmbeddings(anthropic_api_key=settings.ANTHROPIC_API_KEY)
+        # self.vectorstore = PGVector(
+        #     connection_string=settings.DATABASE_URL,
+        #     embedding_function=self.embeddings,
+        #     collection_name="schema_metadata"
+        # )
+        pass
 
     async def retrieve_schema(self, question: str) -> str:
-        # Embed the question
-        question_embedding = self.embeddings.embed_query(question)
-        
-        # Search for similar schema metadata
-        results = self.vectorstore.similarity_search_with_score(
-            question,
-            k=5
-        )
-        
-        # Format results as context
-        context_parts = []
-        for doc, score in results:
-            context_parts.append(f"{doc.page_content} (similarity: {score:.2f})")
-        
-        return "\n\n".join(context_parts)
+        # Temporarily return empty context - embeddings integration to be fixed later
+        return "Embeddings service temporarily disabled for deployment"
