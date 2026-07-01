@@ -51,7 +51,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 @app.get("/")
 @limiter.limit("100/minute")
-async def root():
+async def root(request: Request):
     return {
         "message": "Core Insight Analytics API",
         "version": "1.0.0",
