@@ -50,22 +50,22 @@ export default function DashboardPage() {
             <div className="kpi-card">
               <div className="lbl">Revenue</div>
               <div className="val-row"><div className="val">$85,420</div></div>
-              <div className="delta up">▲ 12% vs last month</div>
+              <div className="trend-badge positive">↑ 12%</div>
             </div>
             <div className="kpi-card">
               <div className="lbl">Customers</div>
               <div className="val-row"><div className="val">1,245</div></div>
-              <div className="delta up">▲ 4.1%</div>
+              <div className="trend-badge positive">↑ 4.1%</div>
             </div>
             <div className="kpi-card">
               <div className="lbl">Orders</div>
               <div className="val-row"><div className="val">320</div></div>
-              <div className="delta down">▼ 2.3%</div>
+              <div className="trend-badge negative">↓ 2.3%</div>
             </div>
             <div className="kpi-card">
               <div className="lbl">Net Profit</div>
               <div className="val-row"><div className="val">$18,750</div></div>
-              <div className="delta up">▲ 7.8%</div>
+              <div className="trend-badge positive">↑ 7.8%</div>
             </div>
           </div>
 
