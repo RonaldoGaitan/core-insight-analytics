@@ -12,11 +12,11 @@ class SQLGenerator:
         )
         
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are a SQL expert. Generate PostgreSQL queries based on the user's question and the provided schema context.\n\nRules:\n- Use proper PostgreSQL syntax\n- Only use tables and columns mentioned in the schema context\n- Use appropriate joins based on relationships in the schema\n- Return only the SQL query, no explanations\n- Use LIMIT to prevent large result sets"),
+            ("system", "You are a SQL expert. Generate PostgreSQL queries based on the user's question and the provided schema context.\n\nRules:\n- Use proper PostgreSQL syntax\n- Only use tables and columns mentioned in the schema context\n- Use appropriate joins based on relationships in the schema\n- Return only the SQL query, no explanations\n- Use LIMIT to prevent large result sets\n- Do not access the internet or external resources\n- Do not make any HTTP requests or API calls\n- Work only with the provided schema context"),
             ("human", "Schema Context:\n{{schema_context}}\n\nUser Question: {{question}}\n\nGenerate SQL:")
         ])
 
-    async def generate_sql(self, question: str, schema_context: str) -> str:
+    async def generate_sql(self, question: str, schema_context: str, tenant_id: str = None) -> str:
         chain = self.prompt | self.llm
         result = await chain.ainvoke({
             "schema_context": schema_context,

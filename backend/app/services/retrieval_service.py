@@ -15,6 +15,7 @@ class RetrievalService:
         # )
         pass
 
-    async def retrieve_schema(self, question: str) -> str:
+    async def retrieve_schema(self, question: str, tenant_id: str = None) -> str:
         # Temporarily return empty context - embeddings integration to be fixed later
+        # In production, this would use tenant_id to filter schema metadata
         return "Embeddings service temporarily disabled for deployment"

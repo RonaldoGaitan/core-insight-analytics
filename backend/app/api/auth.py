@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, EmailStr, Field, validator
 from typing import Optional
 from app.services.auth_service import AuthService
+from app.core.rate_limit import limiter
 import re
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
@@ -56,7 +57,8 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 
 @router.post("/signup", response_model=dict)
-async def signup(user_data: UserCreate):
+@limiter.limit("5/minute")
+async def signup(user_data: UserCreate, request: Request):
     """Create a new user account"""
     auth_service = AuthService()
     result = await auth_service.create_user(
@@ -73,7 +75,8 @@ async def signup(user_data: UserCreate):
 
 
 @router.post("/login", response_model=Token)
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+@limiter.limit("10/minute")
+async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     """Login with email and password"""
     auth_service = AuthService()
     result = await auth_service.login(

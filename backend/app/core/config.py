@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     SUPABASE_KEY: str
     ANTHROPIC_API_KEY: str
     SECRET_KEY: str = "default-secret-key-change-in-production"
-    ALLOWED_ORIGINS: str = "http://localhost:3000"
+    ENCRYPTION_KEY: Optional[str] = None
+    ALLOWED_ORIGINS: str = "http://localhost:3000,https://www.coreinsight.solutions,https://coreinsight.solutions"
     SENTRY_DSN: Optional[str] = None
     
     class Config:

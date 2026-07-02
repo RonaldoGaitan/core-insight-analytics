@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import query, integrations, auth, oauth
+from app.api import query, integrations, auth, oauth, dashboard
 from app.core.config import settings
 from app.core.rate_limit import limiter, rate_limit_exceeded_handler
 from app.core.logging_config import logger
@@ -35,6 +35,7 @@ app.include_router(query.router, prefix="/api", tags=["query"])
 app.include_router(integrations.router, prefix="/api", tags=["integrations"])
 app.include_router(auth.router, prefix="/api", tags=["auth"])
 app.include_router(oauth.router, prefix="/api", tags=["oauth"])
+app.include_router(dashboard.router, prefix="/api", tags=["dashboard"])
 
 
 @app.exception_handler(Exception)

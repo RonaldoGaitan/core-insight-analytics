@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from app.connectors import StripeConnector, ShopifyConnector, GoogleAnalyticsConnector
 from app.core.database import get_db
 from app.core.tenant_context import set_tenant_context
+from app.core.encryption import encryption_service
 from sqlalchemy import text
 import logging
 
@@ -43,6 +44,9 @@ class IntegrationService:
             
             # Save connection to database with tenant isolation
             with set_tenant_context(tenant_id) as db:
+                # Encrypt credentials before storing
+                encrypted_credentials = encryption_service.encrypt_dict(credentials)
+                
                 insert_query = text("""
                     INSERT INTO data_connections 
                     (tenant_id, source_type, credentials, status, created_at, updated_at)
@@ -52,7 +56,7 @@ class IntegrationService:
                 result = db.execute(insert_query, {
                     'tenant_id': tenant_id,
                     'source_type': source_type,
-                    'credentials': str(credentials)
+                    'credentials': encrypted_credentials
                 })
                 connection_id = result.fetchone()[0]
                 
@@ -106,7 +110,9 @@ class IntegrationService:
                     return {'success': False, 'error': 'Connection not found'}
                 
                 source_type = row[0]
-                credentials = eval(row[1])  # In production, use proper JSON parsing
+                encrypted_credentials = row[1]
+                # Decrypt credentials
+                credentials = encryption_service.decrypt_dict(encrypted_credentials)
             
             # Create connector and sync
             connector_class = self.connectors[source_type]
@@ -185,7 +191,9 @@ class IntegrationService:
                 if not row:
                     return {}
                 
-                credentials = eval(row[0])
+                encrypted_credentials = row[0]
+                # Decrypt credentials
+                credentials = encryption_service.decrypt_dict(encrypted_credentials)
             
             # Create connector and get metrics
             connector_class = self.connectors[source_type]
