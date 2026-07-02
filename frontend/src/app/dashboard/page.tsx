@@ -10,7 +10,7 @@ export default function DashboardPage() {
     // Simple authentication check - redirect to login if not authenticated
     const isAuthenticated = localStorage.getItem('isAuthenticated')
     if (!isAuthenticated) {
-      router.push('/login')
+      router.replace('/login')
     }
   }, [router])
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { SAMPLE_PROMPTS } from '@/lib/dataSourceSchema'
 
@@ -24,6 +24,32 @@ export default function IntegrationsWizardPage() {
   const [isConnecting, setIsConnecting] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncStatus, setSyncStatus] = useState('')
+
+  // Load wizard state from localStorage on mount
+  useEffect(() => {
+    const savedState = localStorage.getItem('wizardState')
+    if (savedState) {
+      const state = JSON.parse(savedState)
+      setStep(state.step || 1)
+      setSelectedSource(state.selectedSource || null)
+      setCredentials(state.credentials || { storeUrl: '', apiKey: '' })
+      setSyncProgress(state.syncProgress || 0)
+      setSyncStatus(state.syncStatus || '')
+    }
+  }, [])
+
+  // Save wizard state to localStorage on change
+  useEffect(() => {
+    const state = { step, selectedSource, credentials, syncProgress, syncStatus }
+    localStorage.setItem('wizardState', JSON.stringify(state))
+  }, [step, selectedSource, credentials, syncProgress, syncStatus])
+
+  // Clear wizard state on completion
+  useEffect(() => {
+    if (syncProgress === 100) {
+      localStorage.removeItem('wizardState')
+    }
+  }, [syncProgress])
 
   const handleConnect = async () => {
     setIsConnecting(true)

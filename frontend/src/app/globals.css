@@ -198,16 +198,17 @@ button {
 
 .hero h1 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(38px, 6vw, 64px);
   line-height: 1.05;
   letter-spacing: -.02em;
   margin: 0 0 18px;
+  color: #0a0a0a;
 }
 
 .hero p {
   font-size: 18px;
-  color: var(--ink-soft);
+  color: #1a1a1a;
   max-width: 520px;
   margin: 0 auto 32px;
   line-height: 1.55;
@@ -334,6 +335,31 @@ footer.site {
   justify-content: space-between;
   color: var(--ink-soft);
   font-size: 13px;
+}
+
+/* ---------- ACCESSIBILITY FOCUS STATES ---------- */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #16181d;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for keyboard users */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #16181d;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
 }
 
 /* ---------- FEATURE CARDS (Plausible-style) ---------- */
