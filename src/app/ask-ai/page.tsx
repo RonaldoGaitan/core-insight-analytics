@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function AskAIPage() {
@@ -8,6 +8,13 @@ export default function AskAIPage() {
   const [messages, setMessages] = useState<Array<{role: 'user' | 'ai', content: any}>>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated')
+    if (!isAuthenticated) {
+      router.replace('/login')
+    }
+  }, [router])
 
   const handleSend = async () => {
     if (!input.trim()) return
