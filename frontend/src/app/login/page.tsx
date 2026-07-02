@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
@@ -70,7 +70,7 @@ export default function LoginPage() {
         <div className="brand"><span className="mark"></span>CoreInsight Analytics</div>
         <h1>Welcome back</h1>
         <p className="sub">Enter your credentials to access your account</p>
-        
+
         <form onSubmit={handleLogin}>
           <div className="field">
             <label>Email</label>
@@ -101,5 +101,13 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginForm />
+    </Suspense>
   )
 }
